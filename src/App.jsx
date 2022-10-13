@@ -1,9 +1,11 @@
-import { useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { useEffect, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import config from "./config/app.config";
-import Body from "./components/body/Body";
+import Loader from "./components/utils/loader/Loader";
+
+const Routes = React.lazy(() => import("./components/body/Routes"));
 
 const App = () => {
   useEffect(() => {
@@ -16,22 +18,26 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div className="App">
-        <Body />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </div>
-    </Router>
+    <>
+      <Router>
+        <Suspense fallback={<Loader />}>
+          <div className="App">
+            <Routes />
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </div>
+        </Suspense>
+      </Router>
+    </>
   );
 };
 

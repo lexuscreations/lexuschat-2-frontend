@@ -1,5 +1,6 @@
-const config = Object.freeze({
-  REACT_APP_SERVER_URI: "http://localhost:5000/api/v1",
+const CONFIG = Object.freeze({
+  REACT_APP_SERVER_URI_API: "http://localhost:5000/api/v1",
+  REACT_APP_SERVER_URI_SOCKET: "http://localhost:5000",
   REACT_APP_TITLE: [
     {
       fullName: "LexusCreations - LexusChat-2",
@@ -19,4 +20,4 @@ const config = Object.freeze({
   },
 });
 
-export default config;
+export default CONFIG;

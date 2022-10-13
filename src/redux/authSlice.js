@@ -7,10 +7,15 @@ const authSlice = createSlice({
   },
   reducers: {
     login(state, action) {
+      action.payload && localStorage.setItem("userUUID", action.payload);
       state.isLogged = true;
+    },
+    logout(state, action) {
+      localStorage.removeItem("userUUID");
+      state.isLogged = false;
     },
   },
 });
 
-export const { login } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;
